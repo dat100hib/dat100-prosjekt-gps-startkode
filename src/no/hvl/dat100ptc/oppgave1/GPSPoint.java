@@ -10,6 +10,7 @@ public class GPSPoint {
 
 		// TODO - Legge til time, latitude, longitude og elevation.
 		//TODO - lære branches, pull og commit
+		// yes da
 
 		throw new UnsupportedOperationException(TODO.construtor("GPSPoint"));
 
