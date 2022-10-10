@@ -4,21 +4,24 @@ import no.hvl.dat100ptc.TODO;
 
 public class GPSPoint {
 
-	// TODO - objektvariable
+	private int time;
+	private double latitude;
+	private double longitude;
+	private double elevation;
 		
 	public GPSPoint(int time, double latitude, double longitude, double elevation) {
 
-		// TODO - konstruktør
-
-		// Fjern linjene med throw new etterhvert som metodene implementeres
-		throw new UnsupportedOperationException(TODO.construtor("GPSPoint"));
+		this.time = time;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.elevation = elevation;
 
 	}
 
-	// TODO - get/set metoder
 	public int getTime() {
 		
-		throw new UnsupportedOperationException(TODO.method());
+		return time;
+
 		
 	}
 
@@ -30,7 +33,8 @@ public class GPSPoint {
 
 	public double getLatitude() {
 		
-		throw new UnsupportedOperationException(TODO.method());
+		return latitude;
+
 		
 	}
 
@@ -42,7 +46,7 @@ public class GPSPoint {
 
 	public double getLongitude() {
 		
-		throw new UnsupportedOperationException(TODO.method());
+		return longitude;
 		
 	}
 
@@ -54,7 +58,7 @@ public class GPSPoint {
 
 	public double getElevation() {
 		
-		throw new UnsupportedOperationException(TODO.method());
+		return elevation;
 		
 	}
 
