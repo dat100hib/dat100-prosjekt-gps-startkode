@@ -22,12 +22,11 @@ public class GPSPoint {
 		
 		return time;
 
-		
 	}
 
 	public void setTime(int time) {
 				
-		throw new UnsupportedOperationException(TODO.method());
+		this.time = time;
 
 	}
 
@@ -35,12 +34,11 @@ public class GPSPoint {
 		
 		return latitude;
 
-		
 	}
 
 	public void setLatitude(double latitude) {
 		
-		throw new UnsupportedOperationException(TODO.method());
+		this.latitude = latitude;
 		
 	}
 
@@ -52,7 +50,7 @@ public class GPSPoint {
 
 	public void setLongitude(double longitude) {
 		
-		throw new UnsupportedOperationException(TODO.method());
+		this.longitude = longitude;
 		
 	}
 
@@ -64,7 +62,7 @@ public class GPSPoint {
 
 	public void setElevation(double elevation) {
 		
-		throw new UnsupportedOperationException(TODO.method());
+		this.elevation = elevation;
 		
 	}
 	
@@ -72,11 +70,9 @@ public class GPSPoint {
 		
 		String str;
 		
-		// TODO - start
+		str = (this.time + " (" + this.latitude + "," + this.longitude + ") " + this.elevation + "\n");
 
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - slutt
+		return str;
 		
 	}
 }
