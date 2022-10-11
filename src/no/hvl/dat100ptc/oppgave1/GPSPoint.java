@@ -60,6 +60,5 @@ public class GPSPoint {
 		str=(getTime()+" ("+getLatitude()+" ,"+getLongitude()+") "+getElevation()+"\n");
 		return str;
 		// TODO - slutt
-		
 	}
 }
