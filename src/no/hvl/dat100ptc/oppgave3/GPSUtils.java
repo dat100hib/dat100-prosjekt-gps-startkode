@@ -4,6 +4,7 @@ import static java.lang.Math.*;
 
 import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
+import no.hvl.dat100ptc.oppgave2.GPSDataConverter;
 
 public class GPSUtils {
 
@@ -90,25 +91,25 @@ public class GPSUtils {
 
 		int secs;
 		double speed;
-
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
-
+		
+		secs = gpspoint2.getTime() - gpspoint1.getTime();
+		speed = distance(gpspoint1, gpspoint2)/secs * 3.6;
+		
+		return speed;
 	}
 
 	public static String formatTime(int secs) {
 
 		String timestr;
 		String TIMESEP = ":";
-
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
+		
+		long HH = secs/3600;
+		long MM = (secs%3600)/60;
+		long SS = secs%60;
+		
+		timestr = String.format("  %02d"+TIMESEP+"%02d"+TIMESEP+"%02d", HH, MM, SS);
+		
+		return timestr;
 
 	}
 
