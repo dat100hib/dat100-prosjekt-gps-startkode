@@ -57,7 +57,7 @@ public class GPSPoint {
 		String str;
 		
 		// TODO - start
-		str=(getTime()+" ("+getLatitude()+" ,"+getLongitude()+") "+getElevation()+"\n");
+		str=(getTime()+" ("+getLatitude()+","+getLongitude()+") "+getElevation()+"\n");
 		return str;
 		// TODO - slutt
 	}
