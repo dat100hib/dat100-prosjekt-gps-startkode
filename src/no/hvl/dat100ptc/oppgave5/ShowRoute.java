@@ -46,30 +46,47 @@ public class ShowRoute extends EasyGraphics {
 		double minlon = GPSUtils.findMin(GPSUtils.getLongitudes(gpspoints));
 
 		double xstep = MAPXSIZE / (Math.abs(maxlon - minlon)); 
-
+		
 		return xstep;
 	}
 
 	// antall y-pixels per breddegrad
 	public double ystep() {
-	
-		double ystep;
 		
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
+		double maxlat = GPSUtils.findMax(GPSUtils.getLatitudes(gpspoints));
+		double minlat = GPSUtils.findMin(GPSUtils.getLatitudes(gpspoints));
 
-		// TODO - SLUTT
+		double ystep = MAPYSIZE / (Math.abs(maxlat - minlat)); 
+
+		return ystep;
 		
 	}
 
 	public void showRouteMap(int ybase) {
 
-		// TODO - START
+		double[] lats = GPSUtils.getLatitudes(gpspoints);
+		double[] longs = GPSUtils.getLongitudes(gpspoints);
 		
-		throw new UnsupportedOperationException(TODO.method());
+		double latMin = GPSUtils.findMin(lats);
+		double longMin = GPSUtils.findMin(longs);
+//		
+		double latMax = GPSUtils.findMax(lats);
+		double longMax = GPSUtils.findMax(longs);
 		
-		// TODO - SLUTT
+		for (int i = 0; i < lats.length; i++) {
+
+			int y = (int)((lats[i] - latMin)*ystep());
+			int x = (int)((longs[i] - longMin)*xstep());
+			System.out.println("========================");
+			System.out.println((MARGIN + x) + " " + (ybase - y));
+			//drawCircle(MARGIN + (((int)longs[i] - (int)longMin)*(int)xstep()), ybase - (((int)lats[i]-(int)latMin)*(int)ystep()), 4);
+			//System.out.println((longs[i]-longMin)*10000);
+			setColor(30,150,20);
+			fillCircle(MARGIN+x, ybase - y, 2);
+			if (i < lats.length -1)
+				drawLine(MARGIN + x, ybase - y, MARGIN + (int)((longs[i+1] - longMin)*xstep()), ybase - (int)((lats[i+1] - latMin)*ystep()));
+		}
+		
 	}
 
 	public void showStatistics() {
@@ -77,13 +94,14 @@ public class ShowRoute extends EasyGraphics {
 		int TEXTDISTANCE = 20;
 
 		setColor(0,0,0);
-		setFont("Courier",12);
+		setFont("Arial",12);
+		String[] tab = gpscomputer.displayStatistics();
+		int y = TEXTDISTANCE;
+		for (int i = 0; i < tab.length; i++) {
+			drawString(tab[i], 10, y);
+			y+= TEXTDISTANCE;
+		}
 		
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - SLUTT;
 	}
 
 }
