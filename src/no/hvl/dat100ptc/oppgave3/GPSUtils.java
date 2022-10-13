@@ -136,7 +136,7 @@ public class GPSUtils {
 		String mm = String.format("%f", min);
 		String ss = String.format("%f", sec);*/
 		
-		timestr = String.format("%2s", hr + TIMESEP + min + TIMESEP + sec);
+		timestr = String.format("%02d", hr + "%02d", TIMESEP + "%02d", min + TIMESEP + "%02d", sec);
 		
 		return timestr;
 		// TODO - SLUTT
