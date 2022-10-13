@@ -153,7 +153,7 @@ public class GPSUtils {
 		double a = (int) d;
 		double avrundet = a / 100;
 		
-		str = String.format("%10s", avrundet);
+		str = String.format("%" +TEXTWIDTH +"s", avrundet);
 		return str;
 		// TODO - SLUTT
 	}
