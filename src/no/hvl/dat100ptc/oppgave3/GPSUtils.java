@@ -118,12 +118,13 @@ public class GPSUtils {
 	public static String formatDouble(double d) {
 
 		String str;
+		
+		d = Math.round(d*100);
+		d = d/100;
+		
+		str = "      " + d;
 
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
+		return str;
 
 	}
 }
