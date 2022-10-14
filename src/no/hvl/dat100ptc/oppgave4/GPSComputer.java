@@ -127,8 +127,8 @@ public class GPSComputer {
 
 		// TODO - START
 		double s = secs;
-		kcal = beregnMET(speedmph) * weight * (s/3600); 
-		
+		kcal = beregnMET(speedmph) * weight * (s / 3600);
+
 		return kcal;
 		// TODO - SLUTT
 
@@ -140,7 +140,7 @@ public class GPSComputer {
 
 		// TODO - START
 		int met = beregnMET(averageSpeed());
-		totalkcal = (met * weight * totalTime())/3600;
+		totalkcal = (met * weight * totalTime()) / 3600;
 		return totalkcal;
 		// TODO - SLUTT
 
@@ -156,56 +156,82 @@ public class GPSComputer {
 		String txt1 = String.format("%-15s", "Total time");
 		String time = GPSUtils.formatTime(totalTime());
 		System.out.println(txt1 + ":" + time + " ");
-		
+
 		String txt2 = String.format("%-15s", "Total Distance");
 		String distance = GPSUtils.formatDouble(totalDistance());
 		System.out.println(txt2 + ":" + distance + " km");
-		
+
 		String txt3 = String.format("%-15s", "Total Elevation");
 		String elevation = GPSUtils.formatDouble(totalElevation());
 		System.out.println(txt3 + ":" + elevation + " m");
-		
+
 		String txt4 = String.format("%-15s", "Max Speed");
 		String maxSpeed = GPSUtils.formatDouble(maxSpeed());
 		System.out.println(txt4 + ":" + maxSpeed + " km/t");
-		
+
 		String txt5 = String.format("%-15s", "Average Speed");
 		String average = GPSUtils.formatDouble(averageSpeed());
 		System.out.println(txt5 + ":" + average + " km/t");
-		
+
 		String txt6 = String.format("%-15s", "Energy");
 		String energy = GPSUtils.formatDouble(totalKcal(WEIGHT));
 		System.out.println(txt6 + ":" + energy + " kcal");
-		
+
 		// TODO - SLUTT
-		
+
 		System.out.println("==============================================");
-		
+
 	}
 
-	//Egen metode for å beregne MET, hastighet i mph
+	// Egen metode for å beregne MET, hastighet i mph
 	public int beregnMET(double speedmph) {
-		
+
 		int met = 0;
-		
+
 		if (speedmph < 10) {
 			met = 4;
-		}
-		else if (speedmph < 12) {
+		} else if (speedmph < 12) {
 			met = 6;
-		}
-		else if (speedmph < 14) {
+		} else if (speedmph < 14) {
 			met = 8;
-		}
-		else if (speedmph < 16) {
+		} else if (speedmph < 16) {
 			met = 10;
-		}
-		else if (speedmph < 20) {
+		} else if (speedmph < 20) {
 			met = 12;
-		}
-		else if (speedmph > 20) {
+		} else if (speedmph > 20) {
 			met = 16;
 		}
 		return met;
+	}
+
+	public String statisticsStr() {
+		
+		String txt1 = String.format("%-15s", "Total time");
+		String time = GPSUtils.formatTime(totalTime());
+		txt1 = (txt1 + ":" + time + " ");
+
+		String txt2 = String.format("%-15s", "Total Distance");
+		String distance = GPSUtils.formatDouble(totalDistance());
+		txt2 = (txt2 + ":" + distance + " km");
+
+		String txt3 = String.format("%-15s", "Total Elevation");
+		String elevation = GPSUtils.formatDouble(totalElevation());
+		txt3 = (txt3 + ":" + elevation + " m");
+
+		String txt4 = String.format("%-15s", "Max Speed");
+		String maxSpeed = GPSUtils.formatDouble(maxSpeed());
+		txt4 = (txt4 + ":" + maxSpeed + " km/t");
+
+		String txt5 = String.format("%-15s", "Average Speed");
+		String average = GPSUtils.formatDouble(averageSpeed());
+		txt5 = (txt5 + ":" + average + " km/t");
+
+		String txt6 = String.format("%-15s", "Energy");
+		String energy = GPSUtils.formatDouble(totalKcal(WEIGHT));
+		txt6 = (txt6 + ":" + energy + " kcal");
+
+		String str = (txt1 + txt2 + txt3 + txt4 + " " + txt5 + txt6 + " ");
+
+		return str;
 	}
 }

@@ -75,7 +75,7 @@ public class ShowRoute extends EasyGraphics {
 		setColor(0, 0, 255);
 		for (int i = 0; i < latitudes.length; i++) {
 			double a = (latitudes[i] - 60.3) * 10000;
-			a = a / 2;
+			a = a * 3/4;
 			double b = (longitudes[i] - 5.2) * 10000;
 			b = b / 2;
 			fillCircle((int) b, MAPXSIZE - (int) a, 2);
@@ -91,7 +91,14 @@ public class ShowRoute extends EasyGraphics {
 		setFont("Courier", 12);
 
 		// TODO - START
-
+		String str = gpscomputer.statisticsStr();
+		drawString(str.substring(0,27),MARGIN, MARGIN);
+		drawString(str.substring(27,56),MARGIN, MARGIN + TEXTDISTANCE);
+		drawString(str.substring(56, 84),MARGIN, MARGIN + 2 * TEXTDISTANCE);
+		drawString(str.substring(84,116),MARGIN, MARGIN + 3 * TEXTDISTANCE);
+		drawString(str.substring(116,147),MARGIN, MARGIN + 4 * TEXTDISTANCE);
+		drawString(str.substring(147, 179),MARGIN, MARGIN + 5 * TEXTDISTANCE);
+		
 		// TODO - SLUTT;
 	}
 
