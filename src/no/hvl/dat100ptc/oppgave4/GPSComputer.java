@@ -204,6 +204,8 @@ public class GPSComputer {
 		return met;
 	}
 
+	
+	//Egen metode for bruk i ShowRoute
 	public String statisticsStr() {
 		
 		String txt1 = String.format("%-15s", "Total time");

@@ -74,10 +74,14 @@ public class ShowRoute extends EasyGraphics {
 		double[] longitudes = GPSUtils.getLongitudes(gpspoints);
 		setColor(0, 0, 255);
 		for (int i = 0; i < latitudes.length; i++) {
-			double a = (latitudes[i] - 60.3) * 10000;
-			a = a * 3/4;
-			double b = (longitudes[i] - 5.2) * 10000;
-			b = b / 2;
+//			double a = (latitudes[i] - 60.3) * 10000;
+//			a = a * 3/4;
+			double a = (latitudes[i] - GPSUtils.findMin(GPSUtils.getLatitudes(gpspoints)));
+			a = a * ystep();
+//			double b = (longitudes[i] - 5.2) * 10000;
+//			b = b / 2;
+			double b = (longitudes[i] - GPSUtils.findMin(GPSUtils.getLongitudes(gpspoints)));
+			b = b * xstep();
 			fillCircle((int) b, MAPXSIZE - (int) a, 2);
 		}
 		// TODO - SLUTT
