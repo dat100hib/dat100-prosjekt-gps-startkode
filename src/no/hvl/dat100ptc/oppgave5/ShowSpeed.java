@@ -30,6 +30,7 @@ public class ShowSpeed extends EasyGraphics {
 	// read in the files and draw into using EasyGraphics
 	public static void main(String[] args) {
 		launch(args);
+		
 	}
 
 	public void run() {

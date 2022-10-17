@@ -69,22 +69,58 @@ public class ShowRoute extends EasyGraphics {
 		
 		double latMin = GPSUtils.findMin(lats);
 		double longMin = GPSUtils.findMin(longs);
-//		
-		double latMax = GPSUtils.findMax(lats);
-		double longMax = GPSUtils.findMax(longs);
 		
 		for (int i = 0; i < lats.length; i++) {
 
 			int y = (int)((lats[i] - latMin)*ystep());
 			int x = (int)((longs[i] - longMin)*xstep());
-			System.out.println("========================");
-			System.out.println((MARGIN + x) + " " + (ybase - y));
-			//drawCircle(MARGIN + (((int)longs[i] - (int)longMin)*(int)xstep()), ybase - (((int)lats[i]-(int)latMin)*(int)ystep()), 4);
-			//System.out.println((longs[i]-longMin)*10000);
+
 			setColor(30,150,20);
-			fillCircle(MARGIN+x, ybase - y, 2);
+			fillCircle(MARGIN +x , ybase - y, 2);
+			
 			if (i < lats.length -1)
 				drawLine(MARGIN + x, ybase - y, MARGIN + (int)((longs[i+1] - longMin)*xstep()), ybase - (int)((lats[i+1] - latMin)*ystep()));
+		}
+		
+		int xStart = (int)((longs[0] - longMin)*xstep());
+		int yStart = (int)((lats[0] - latMin)*ystep());
+		setColor(10,10,190);
+		int sirkel = fillCircle(MARGIN + xStart, ybase - yStart, 2);
+		
+		double[] speedTab = new GPSComputer(gpspoints).speeds();
+		double maxSpeed = GPSUtils.findMax(speedTab);
+		double minSpeed = GPSUtils.findMin(speedTab);
+		double SpeedStep = (maxSpeed - minSpeed)/10;
+		
+		
+		for (int i = 0; i < lats.length; i++) {
+			
+			if (i < speedTab.length -1) {
+			if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep) 
+				setSpeed(1);
+			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*2) 
+				setSpeed(2);
+			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*3) 
+				setSpeed(3);
+			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*4) 
+				setSpeed(4);
+			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*5) 
+				setSpeed(5);
+			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*6) 
+				setSpeed(6);
+			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*7) 
+				setSpeed(7);
+			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*8) 
+				setSpeed(8);
+			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*9) 
+				setSpeed(9);
+			else
+				setSpeed(10);
+			}
+			
+			int y = (int)((lats[i] - latMin)*ystep());
+			int x = (int)((longs[i] - longMin)*xstep());
+			moveCircle(sirkel, MARGIN + x, ybase - y);
 		}
 		
 	}

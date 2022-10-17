@@ -138,11 +138,16 @@ public class GPSComputer {
 	}
 
 	public double totalKcal(double weight) {
-
-		double totalkcal = 0;
-		totalkcal += kcal(weight, totalTime(), averageSpeed());
-		return totalkcal;
 		
+		double totalkcal = 0;
+		double[] speed = speeds();
+		int[] time = new int[speed.length];
+		for (int i = 0; i < time.length; i++) {
+			time[i] = gpspoints[i+1].getTime() - gpspoints[i].getTime(); 
+			totalkcal += kcal(weight, time[i], speed[i]);
+		}
+
+		return totalkcal;
 	}
 	
 	private static double WEIGHT = 80.0;
@@ -188,8 +193,37 @@ public class GPSComputer {
 		strTab[5] = Ener;
 		//String str = er + "\n" + totTime + "\n" + totDist + "\n" + totEle +"\n" + maxS + "\n" + avgS + "\n" + Ener + "\n" + er;
 		System.out.println("==============================================");
-
+		
 		return strTab;
+	}
+	
+	public double[] climbs() {
+		//beregner stigningsprosenten
+		//elevation / distance x 100
+		//må opprette en tabell for de ulike stigningsprosentene
+		double[] stigning = new double[gpspoints.length - 1];
+		for (int i = 0; i < stigning.length; i++) {
+			double elev = (gpspoints[i + 1].getElevation() - gpspoints[i].getElevation());
+			double dist = GPSUtils.distance(gpspoints[i], gpspoints[i+1]);
+			double rad = Math.toRadians(elev/dist);
+			stigning[i] = Math.round((Math.tan(rad))*100*100)/100.0;
+			
+		}
+
+		return stigning;
+		
+		
+	}
+	
+	public double maxClimb() {
+		double[] stigning = climbs();
+		double max = 0;
+		for (double s : stigning) {
+			if ( max < s) {
+				max = s;
+			}
+		}
+		return max;
 	}
 
 }
