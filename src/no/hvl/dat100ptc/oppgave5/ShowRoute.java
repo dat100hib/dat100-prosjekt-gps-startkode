@@ -69,20 +69,28 @@ public class ShowRoute extends EasyGraphics {
 	public void showRouteMap(int ybase) {
 
 		// TODO - START
-
 		double[] latitudes = GPSUtils.getLatitudes(gpspoints);
 		double[] longitudes = GPSUtils.getLongitudes(gpspoints);
-		setColor(0, 0, 255);
+		
+		int x = 0;
+		int y = 0;
+		
+		double minlat = GPSUtils.findMin(GPSUtils.getLatitudes(gpspoints));
+		double minlong = GPSUtils.findMin(GPSUtils.getLongitudes(gpspoints));
+		
 		for (int i = 0; i < latitudes.length; i++) {
-//			double a = (latitudes[i] - 60.3) * 10000;
-//			a = a * 3/4;
-			double a = (latitudes[i] - GPSUtils.findMin(GPSUtils.getLatitudes(gpspoints)));
-			a = a * ystep();
-//			double b = (longitudes[i] - 5.2) * 10000;
-//			b = b / 2;
-			double b = (longitudes[i] - GPSUtils.findMin(GPSUtils.getLongitudes(gpspoints)));
-			b = b * xstep();
-			fillCircle((int) b, MAPXSIZE - (int) a, 2);
+			
+			setColor(0, 0, 255);
+			int y2 = y;
+			int x2 = x;
+			y = (int)((latitudes[i] - minlat)* ystep());
+			x =(int)((longitudes[i] - minlong) * xstep());
+			
+			fillCircle(x, ybase - y, 2);
+			if(i>0) {
+				setColor(0, 200, 255);
+				drawLine(x2,ybase-y2,x,ybase-y);
+			}
 		}
 		// TODO - SLUTT
 	}
@@ -102,7 +110,6 @@ public class ShowRoute extends EasyGraphics {
 		drawString(str.substring(84,116),MARGIN, MARGIN + 3 * TEXTDISTANCE);
 		drawString(str.substring(116,147),MARGIN, MARGIN + 4 * TEXTDISTANCE);
 		drawString(str.substring(147, 179),MARGIN, MARGIN + 5 * TEXTDISTANCE);
-		
 		// TODO - SLUTT;
 	}
 
