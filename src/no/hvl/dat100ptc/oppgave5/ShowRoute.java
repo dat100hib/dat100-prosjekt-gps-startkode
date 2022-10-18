@@ -12,7 +12,7 @@ public class ShowRoute extends EasyGraphics {
 
 	private static int MARGIN = 50;
 	private static int MAPXSIZE = 800;
-	private static int MAPYSIZE = 800;
+	private static int MAPYSIZE = 550;
 
 	private GPSPoint[] gpspoints;
 	private GPSComputer gpscomputer;
@@ -85,7 +85,7 @@ public class ShowRoute extends EasyGraphics {
 		int xStart = (int)((longs[0] - longMin)*xstep());
 		int yStart = (int)((lats[0] - latMin)*ystep());
 		setColor(10,10,190);
-		int sirkel = fillCircle(MARGIN + xStart, ybase - yStart, 2);
+		int sirkel = fillCircle(MARGIN + xStart, ybase - yStart, 4);
 		
 		double[] speedTab = new GPSComputer(gpspoints).speeds();
 		double maxSpeed = GPSUtils.findMax(speedTab);

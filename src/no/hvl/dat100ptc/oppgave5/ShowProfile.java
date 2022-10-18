@@ -59,7 +59,7 @@ public class ShowProfile extends EasyGraphics {
 		for (double e : elev) {
 
 			setColor(3,150,50);
-			pause(1/skalering);
+			pause(skalering);
 			drawLine(x, ybase, x, ybase-(int)e);
 			x += 2;
 		}

@@ -86,7 +86,7 @@ public class CycleComputer extends EasyGraphics {
 				elev[i] = 0;
 			else
 				elev[i] = gpspoints[i].getElevation();
-			System.out.println(elev[i]);
+
 		}
 
 		int skalering = Integer.parseInt(getText("Skalering: ")); 
@@ -95,7 +95,7 @@ public class CycleComputer extends EasyGraphics {
 		for (int i = 0; i < lats.length; i++) {
 
 			setColor(3,150,50);
-			pause(1/skalering);
+			pause(skalering);
 
 			drawLine(x, ybase - MARGIN -  (int)avstand, x, ybase - MARGIN - (int) avstand -(int)elev[i]);
 			x += 2;

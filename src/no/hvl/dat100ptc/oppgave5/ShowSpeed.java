@@ -47,7 +47,7 @@ public class ShowSpeed extends EasyGraphics {
 		// get segments speeds from the GPS computer object		
 		double[] speeds = gpscomputer.speeds();
 
-		int x = MARGIN,y;
+		int x = MARGIN;
 
 		
 		for (double s : speeds) {

@@ -191,7 +191,7 @@ public class GPSComputer {
 		strTab[3] = maxS;
 		strTab[4] = avgS;
 		strTab[5] = Ener;
-		//String str = er + "\n" + totTime + "\n" + totDist + "\n" + totEle +"\n" + maxS + "\n" + avgS + "\n" + Ener + "\n" + er;
+		
 		System.out.println("==============================================");
 		
 		return strTab;
