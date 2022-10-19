@@ -38,7 +38,7 @@ public class GPSUtils {
 			}
 		}
 				
-				return min;
+		return min;
 
 	}
 

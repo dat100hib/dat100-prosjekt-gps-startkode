@@ -94,29 +94,15 @@ public class ShowRoute extends EasyGraphics {
 		
 		
 		for (int i = 0; i < lats.length; i++) {
-			
-			if (i < speedTab.length -1) {
-			if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep) 
-				setSpeed(1);
-			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*2) 
-				setSpeed(2);
-			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*3) 
-				setSpeed(3);
-			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*4) 
-				setSpeed(4);
-			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*5) 
-				setSpeed(5);
-			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*6) 
-				setSpeed(6);
-			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*7) 
-				setSpeed(7);
-			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*8) 
-				setSpeed(8);
-			else if(speedTab[i] > minSpeed && speedTab[i+1] < minSpeed + SpeedStep*9) 
-				setSpeed(9);
-			else
-				setSpeed(10);
+			int s = 0;
+			do {
+				if (i < speedTab.length) {
+					if ( speedTab[i] < minSpeed + SpeedStep*s)
+						setSpeed(s);
+					}
+				s++;
 			}
+			while (s < 11);		//fordi setSpeed har verdier mellom 1 og 10
 			
 			int y = (int)((lats[i] - latMin)*ystep());
 			int x = (int)((longs[i] - longMin)*xstep());

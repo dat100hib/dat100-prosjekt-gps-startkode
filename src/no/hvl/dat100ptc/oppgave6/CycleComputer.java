@@ -18,7 +18,7 @@ public class CycleComputer extends EasyGraphics {
 	
 	// FIXME: take into account number of measurements / gps points
 	private static int ROUTEMAPXSIZE = 800; 
-	private static int ROUTEMAPYSIZE = 400;
+	private static int ROUTEMAPYSIZE = 380;
 	private static int HEIGHTSIZE = 200;
 	private static int TEXTWIDTH = 200;
 
@@ -103,14 +103,14 @@ public class CycleComputer extends EasyGraphics {
 			int y = (int)((lats[i] - latMin)*ystep());
 			int xs = (int)((longs[i] - longMin)*xstep());
 
-			setColor(30,150,20);
-			if (i < lats.length -1) {
-			if (elev[i] == elev[i+1]) 
-				setColor(0,0,255);
-			else if (elev[i] < elev[i+1])
-				setColor(255,0,0);
-			else
-				setColor(0,255,0);
+			
+			if (i < lats.length -1) {			//endrer fargene på ruten
+				if (elev[i] == elev[i+1]) 
+					setColor(0,0,255);			//blå hvis ruten er flat
+				else if (elev[i] < elev[i+1])
+					setColor(255,0,0);			//rød hvis ruten går oppover
+				else
+					setColor(0,255,0);			//grønn hvis det går nedover
 				
 			fillCircle(MARGIN +xs , ybase - y, 2);
 			}
@@ -119,16 +119,34 @@ public class CycleComputer extends EasyGraphics {
 
 				drawLine(MARGIN + xs, ybase - y, MARGIN + (int)((longs[i+1] - longMin)*xstep()), ybase - (int)((lats[i+1] - latMin)*ystep()));
 				setColor(255,255,255);
-				fillRectangle(0,0,150,50);
-				setColor(0,0,0);
-				double fart =  ((Math.round(speed[i]))*100)/100.0;
-				drawString("Speed:   " + String.valueOf(fart) + " km/t", MARGIN, MARGIN+10);
+				fillRectangle(0,0,150,50);		//legger på et hvitt rektangel for å fjerne tidligere display av tid og fart
 				setColor(0,0,0);
 				String tid = GPSUtils.formatTime(gpspoints[i].getTime());
 				drawString(tid, MARGIN, MARGIN);
+				double fart =  ((Math.round(speed[i]))*100)/100.0;
+				drawString("Speed:   " + String.valueOf(fart) + " km/t", MARGIN, MARGIN+10);
+
 			}
 						
 			
+		}
+		int y = (int)((lats[0] - latMin)*ystep());
+		int xs = (int)((longs[0] - longMin)*xstep());
+		setColor(0,0,150);
+		int sirkel = fillCircle(MARGIN + xs, ybase - y, 4);
+		for (int i = 0; i < lats.length; i++) {
+			y = (int)((lats[i] - latMin)*ystep());
+			xs = (int)((longs[i] - longMin)*xstep());
+			setSpeed(1);
+//			if (i < lats.length-1) {					//endrer hastigheten på ballen
+//				if (elev[i] == elev[i+1]) 
+//					setSpeed(5);						//medium fart hvis ruten er flat
+//				else if (elev[i] < elev[i+1])
+//					setSpeed(1);						//langsom hvis det går oppover
+//				else
+//					setSpeed(10);						//rask hvis det går nedover
+//			}
+			moveCircle(sirkel, MARGIN + xs, ybase - y);
 		}
 
 

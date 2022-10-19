@@ -76,13 +76,10 @@ public class GPSComputer {
 	
 	public double maxSpeed() {
 		
-		double maxspeed = 0;
 		
 		double [] maxSpeedTab = speeds();
-		for (double speed : maxSpeedTab) {
-			if (speed > maxspeed)
-			  maxspeed = speed;
-		}
+		double maxspeed = GPSUtils.findMax(maxSpeedTab);
+		
 		
 		return maxspeed;
 		
@@ -91,7 +88,7 @@ public class GPSComputer {
 
 	public double averageSpeed() {
 
-		double average = 0;
+		double average;
 		
 		average = ((totalDistance()/totalTime())*60*60)/1000;
 		return average;
@@ -217,12 +214,8 @@ public class GPSComputer {
 	
 	public double maxClimb() {
 		double[] stigning = climbs();
-		double max = 0;
-		for (double s : stigning) {
-			if ( max < s) {
-				max = s;
-			}
-		}
+		double max = GPSUtils.findMax(stigning);
+		
 		return max;
 	}
 
