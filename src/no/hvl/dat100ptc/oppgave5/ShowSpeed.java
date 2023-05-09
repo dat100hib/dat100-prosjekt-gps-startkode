@@ -30,6 +30,7 @@ public class ShowSpeed extends EasyGraphics {
 	// read in the files and draw into using EasyGraphics
 	public static void main(String[] args) {
 		launch(args);
+		
 	}
 
 	public void run() {
@@ -46,12 +47,19 @@ public class ShowSpeed extends EasyGraphics {
 		// get segments speeds from the GPS computer object		
 		double[] speeds = gpscomputer.speeds();
 
-		int x = MARGIN,y;
+		int x = MARGIN;
 
-		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
-	
-		// TODO - SLUTT
+		for (double s : speeds) {
+			setColor(3,150,50);
+			drawLine(x, ybase, x, ybase-(int)s);
+			x += 2;
+		}
+		
+
+		
+			setColor(51,153,255);
+			drawLine(MARGIN,ybase - (int)gpscomputer.averageSpeed(),x,ybase-(int)gpscomputer.averageSpeed());
+		
 	}
 }
