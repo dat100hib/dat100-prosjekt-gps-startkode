@@ -8,7 +8,9 @@ public class GPSPoint {
 	
 	public GPSPoint(int time, double latitude, double longitude, double elevation) {
 
-		// TODO - konstruktur
+		// TODO - Legge til time, latitude, longitude og elevation.
+		//TODO - lære branches, pull og commit
+		// yes da
 
 		throw new UnsupportedOperationException(TODO.construtor("GPSPoint"));
 		
